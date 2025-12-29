@@ -1,9 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import profileImg from "./assets/profile.jpg";
+import { useState } from "react";
 
 export default function App() {
+  const languages = ["java", "python", "javascript", "typescript", "HTML"]
+  const frameworks_libraries = ["spring boot", "react", "node", "express", "fastapi", "tailwind css", "shadcn/ui"]
+  const databases_messaging = ["postgresql", "mongodb", "mysql", "kafka", "redis", "s3"]
+  const dev_tools = ["git", "docker", "aws", "jira", "postman", "graylog", "grafana", "mixpanel"]
+  const skills = ["data structures", "algorithms", "web development", "backend", "frontend"]
+
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navbar */}
@@ -18,7 +27,30 @@ export default function App() {
             <a href="#projects" className="hover:underline">Projects</a>
             <a href="#contact" className="hover:underline">Contact</a>
           </nav>
+
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X /> : <Menu />}
+          </button>
         </div>
+
+
+        {/* Mobile Nav */}
+        {open && (
+          <div className="md:hidden border-t bg-background">
+            <nav className="flex flex-col gap-4 px-4 py-4 text-center">
+              <a onClick={() => setOpen(false)} href="#about" className="hover:underline">About</a>
+              <a onClick={() => setOpen(false)} href="#skills" className="hover:underline">Skills</a>
+              <a onClick={() => setOpen(false)} href="#projects" className="hover:underline">Projects</a>
+              <a onClick={() => setOpen(false)} href="#contact" className="hover:underline">Contact</a>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero */}
@@ -59,13 +91,56 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-4">
           <h3 className="mb-8 text-4xl font-bold text-center">My Skills</h3>
           <div className="grid grid-cols-2 gap-1 md:grid-cols-5">
-            {["Java", "Spring Boot", "React", "TypeScript", "TailwindCSS", "PostgreSQL", "Kafka", "Docker", "MySQL", "Redis", "MongoDB", "Python", "HTML", "CSS", "JavaScript", "Data Structures", "Git", "Jira"].map(
-              (skill) => (
-                <Card key={skill} className="text-center p-2">
-                  <CardContent className="font-medium">{skill}</CardContent>
-                </Card>
-              )
-            )}
+            <div className="border-black border-2 rounded-lg p-2">
+              <h4 className="font-bold text-center mb-4">Languages</h4>
+              {languages.map(
+                (lang) => (
+                  <Card key={lang} className="text-center p-2">
+                    <CardContent className="font-medium">{lang}</CardContent>
+                  </Card>
+                )
+              )}
+            </div>
+            <div className="border-black border-2 rounded-lg p-2">
+              <h4 className="font-bold text-center mb-4">Frameworks and Libraries</h4>
+              {frameworks_libraries.map(
+                (frame) => (
+                  <Card key={frame} className="text-center p-2">
+                    <CardContent className="font-medium">{frame}</CardContent>
+                  </Card>
+                )
+              )}
+            </div>
+            <div className="border-black border-2 rounded-lg p-2">
+              <h4 className="font-bold text-center mb-4">Databases and Messaging</h4>
+              {databases_messaging.map(
+                (db) => (
+                  <Card key={db} className="text-center p-2">
+                    <CardContent className="font-medium">{db}</CardContent>
+                  </Card>
+                )
+              )}
+            </div>
+            <div className="border-black border-2 rounded-lg p-2">
+              <h4 className="font-bold text-center mb-4">Development Tools</h4>
+              {dev_tools.map(
+                (tool) => (
+                  <Card key={tool} className="text-center p-2">
+                    <CardContent className="font-medium">{tool}</CardContent>
+                  </Card>
+                )
+              )}
+            </div>
+            <div className="border-black border-2 rounded-lg p-2">
+              <h4 className="font-bold text-center mb-4">Others</h4>
+              {skills.map(
+                (skill) => (
+                  <Card key={skill} className="text-center p-2">
+                    <CardContent className="font-medium">{skill}</CardContent>
+                  </Card>
+                )
+              )}
+            </div>
           </div>
         </div>
       </section>
