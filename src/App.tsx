@@ -58,11 +58,11 @@ export default function App() {
       <section id="skills" className="bg-muted/40 py-20">
         <div className="mx-auto max-w-6xl px-4">
           <h3 className="mb-8 text-4xl font-bold text-center">My Skills</h3>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-            {["Java", "Spring Boot", "React", "TypeScript", "TailwindCSS", "PostgreSQL", "Kafka", "Docker", "MySQL", "Redis", "MongoDB", "Python", "HTML", "CSS", "JavaScript", "Data Structures and Algorithms", "Git", "Jira"].map(
+          <div className="grid grid-cols-2 gap-1 md:grid-cols-5">
+            {["Java", "Spring Boot", "React", "TypeScript", "TailwindCSS", "PostgreSQL", "Kafka", "Docker", "MySQL", "Redis", "MongoDB", "Python", "HTML", "CSS", "JavaScript", "Data Structures", "Git", "Jira"].map(
               (skill) => (
-                <Card key={skill} className="text-center">
-                  <CardContent className="py-4 font-medium">{skill}</CardContent>
+                <Card key={skill} className="text-center p-2">
+                  <CardContent className="font-medium">{skill}</CardContent>
                 </Card>
               )
             )}
