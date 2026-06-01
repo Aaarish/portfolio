@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
-import profileImg from "./assets/profile.jpg";
+import pfp from "./assets/me.jpg";
 import { useState } from "react";
 
 export default function App() {
@@ -9,7 +9,52 @@ export default function App() {
   const frameworks_libraries = ["spring boot", "react", "node", "express", "fastapi", "tailwind css", "shadcn/ui"]
   const databases_messaging = ["postgresql", "mongodb", "mysql", "kafka", "redis", "s3"]
   const dev_tools = ["git", "docker", "aws", "jira", "postman", "graylog", "grafana", "mixpanel"]
-  const skills = ["data structures", "algorithms", "web development", "backend", "frontend"]
+  const skills = ["data structures", "algorithms", "web development", "backend", "microservices", "system design", "frontend"]
+  const projects = [
+    {
+      name: "The new social network",
+      description: "A platform to provide an alternative to existing social networking platforms. Having multiple post types like blogs, media posts, notes, polls. Highly event-driven. Still in progress.",
+      image: '',
+      github: "https://github.com/Aaarish/the-new-social-network",
+      live: "",
+    },
+    {
+      name: "The Club Application",
+      description: "A platform to create closed groups with invite-only joining process where members can create and track tasks with deadlines.",
+      image: `${import.meta.env.BASE_URL}projects/project2.jpg`,
+      github: "https://github.com/Aaarish/the-club-application",
+      live: "",
+    },
+    {
+      name: "Duostudio",
+      description: "A planning platform having two scratchboards with different board types like freestyle, flowchart, text. Needs to add user-data persistence and management.",
+      image: `${import.meta.env.BASE_URL}projects/project3.jpg`,
+      github: "https://github.com/Aaarish/duostudio",
+      live: "https://duostudio-phi.vercel.app/",
+    },
+    {
+      name: "Electronic store",
+      description: "E-commerce Backend, Built scalable e-commerce backend application using Java Spring Boot incorporating product catalog and shopping cart functionality.",
+      image: `{import.meta.env.BASE_URL}projects/project4.png`,
+      github: "https://github.com/Aaarish/electronic-store",
+      live: "",
+    },
+    {
+      name: "Blueprint",
+      description: "Project Collaboration Platform providing an interface to create and find projects to join or watch, for collaborative learning.",
+      image: `{import.meta.env.BASE_URL}projects/project5.png`,
+      github: "https://github.com/Aaarish/blueprint-backend",
+      live: "https://github.com/Aaarish/blueprint-frontend",
+    },
+    {
+      name: "The Helper",
+      description: "A marketplace connecting service providers (electricians, plumbers, carpenters, masons, painters, cleaners) with customers through streamlined profile creation and search functionality.",
+      image: `${import.meta.env.BASE_URL}projects/project6.jpg`,
+      github: "https://github.com/Aaarish/the-helper",
+      live: "",
+    },
+  ]
+
 
   const [open, setOpen] = useState(false);
 
@@ -56,7 +101,7 @@ export default function App() {
       {/* Hero */}
       <section className="bg-linear-to-r from-purple-600 to-purple-200">
         <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-24 text-center">
-          <img src={profileImg} alt="Aarish Mahmood" className="w-56 h-56 rounded-full mb-10" />
+          <img src={pfp} alt="Aarish Mahmood" className="w-56 h-56 rounded-full mb-10" />
           {/* <h2 className="text-4xl font-bold md:text-6xl">Hi, I'm Aarish Mahmood 👋</h2> */}
           <h2 className="text-4xl font-bold md:text-6xl">Hi, I'm Aarish Mahmood</h2>
           <p className="mt-6 max-w-2xl">
@@ -78,10 +123,7 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-4 text-center">
           <h3 className="mb-6 text-4xl font-bold">About Me</h3>
           <p className="mx-auto max-w-3xl">
-            I build scalable backend systems using Java & Spring Boot and modern UIs using React,
-            TypeScript, TailwindCSS, and shadcn/ui. I enjoy designing clean architectures and
-            performance-oriented systems. I'm a passionate coder and web developer with expertise in creating modern,
-            responsive websites and web applications, and a love for solving real-world problems through code.
+            I am a Software Engineer with several years of experience designing, testing, and developing software. In-depth understanding of web technologies with focus on delivering innovative business solutions. Excels in fast-paced, high-energy and deadline-driven environment with willingness to take on additional tasks. Always keen to take on challenges.
           </p>
         </div>
       </section>
@@ -150,21 +192,37 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-4">
           <h3 className="mb-8 text-4xl font-bold text-center">My Projects</h3>
           <div className="grid gap-6 md:grid-cols-2">
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="hover:shadow-lg transition">
-                <CardContent className="p-6">
-                  <img src={`/projects/project${i}.png`} alt={`Project ${i}`} className="w-full h-40 object-cover rounded-t-xl" />
-                  <h4 className="text-xl font-semibold">Project {i}</h4>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Short description of the project, the problem it solves, and the tech stack used.
-                  </p>
-                  <div className="mt-4 flex gap-3">
-                    <Button size="sm" variant="outline">GitHub</Button>
-                    <Button size="sm">Live</Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {
+              projects.map(
+                (project) => (
+                  <Card key={project.name} className="hover:shadow-lg transition">
+                    <CardContent className="p-6">
+                      <img src={project.image} alt={project.name} className="w-full h-40 object-cover rounded-t-xl" />
+                      <h4 className="text-xl font-semibold">{project.name}</h4>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {project.description}
+                      </p>
+                      <div className="mt-4 flex gap-3">
+                        {project.github ? (
+                          <Button size="sm" variant="outline" asChild>
+                            <a href={project.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+                          </Button>
+                        ) : (
+                          <Button size="sm" variant="outline" disabled>GitHub</Button>
+                        )}
+                        {project.live ? (
+                          <Button size="sm" asChild>
+                            <a href={project.live} target="_blank" rel="noopener noreferrer">Live</a>
+                          </Button>
+                        ) : (
+                          <Button size="sm" disabled>Live</Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              )
+            }
           </div>
         </div>
       </section>
