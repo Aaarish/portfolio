@@ -55,6 +55,21 @@ export default function App() {
     },
   ]
 
+  const blogs = [
+    {
+      title: "The story of Authentication and Authorization",
+      description: "All you need to know about authentication and authorization: from first principles...",
+      url: "https://medium.com/@aarishm767/the-story-of-authentication-and-authorization-4fc8e402496f",
+      image: `${import.meta.env.BASE_URL}blogs/blog1.jpg`,
+    },
+    {
+      title: "Client-Sever Architecture as an inter-process communication over a network",
+      description: "All you need to know about client-server architecture: from first principles...",
+      url: "https://medium.com/@aarishm767/client-sever-architecture-as-an-inter-process-communication-over-a-network-9d114251dfab",
+      image: `${import.meta.env.BASE_URL}blogs/blog2.jpg`,
+    },
+  ]
+
 
   const [open, setOpen] = useState(false);
 
@@ -70,6 +85,7 @@ export default function App() {
             <a href="#about" className="hover:underline">About</a>
             <a href="#skills" className="hover:underline">Skills</a>
             <a href="#projects" className="hover:underline">Projects</a>
+            <a href="#blogs" className="hover:underline">Blogs</a>
             <a href="#contact" className="hover:underline">Contact</a>
           </nav>
 
@@ -92,6 +108,7 @@ export default function App() {
               <a onClick={() => setOpen(false)} href="#about" className="hover:underline">About</a>
               <a onClick={() => setOpen(false)} href="#skills" className="hover:underline">Skills</a>
               <a onClick={() => setOpen(false)} href="#projects" className="hover:underline">Projects</a>
+              <a onClick={() => setOpen(false)} href="#blogs" className="hover:underline">Blogs</a>
               <a onClick={() => setOpen(false)} href="#contact" className="hover:underline">Contact</a>
             </nav>
           </div>
@@ -223,6 +240,58 @@ export default function App() {
                 )
               )
             }
+          </div>
+        </div>
+      </section>
+
+      {/* Blogs */}
+      <section id="blogs" className="bg-muted/40 py-20">
+        <div className="mx-auto max-w-6xl px-4">
+          <h3 className="mb-8 text-4xl font-bold text-center">My Blogs</h3>
+          <div className="flex flex-col gap-6">
+            {blogs.map((blog) => {
+              const card = (
+                <Card className="hover:shadow-lg transition overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="flex flex-col sm:flex-row">
+                      <div className="shrink-0 sm:w-56 md:w-64">
+                        {blog.image ? (
+                          <img
+                            src={blog.image}
+                            alt={blog.title}
+                            className="h-44 w-full object-cover sm:h-full sm:min-h-44 sm:w-56 md:w-64"
+                          />
+                        ) : (
+                          <div className="flex h-44 w-full items-center justify-center bg-muted text-sm text-muted-foreground sm:min-h-44 sm:w-56 md:w-64">
+                            No image
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-1 flex-col justify-center p-6">
+                        <h4 className="text-xl font-semibold">{blog.title}</h4>
+                        <p className="mt-2 text-sm text-muted-foreground">
+                          {blog.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+
+              return blog.url ? (
+                <a
+                  key={blog.title}
+                  href={blog.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {card}
+                </a>
+              ) : (
+                <div key={blog.title}>{card}</div>
+              );
+            })}
           </div>
         </div>
       </section>
