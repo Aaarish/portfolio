@@ -71,6 +71,8 @@ export default function App() {
   ]
 
 
+  const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf`;
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -122,14 +124,19 @@ export default function App() {
           {/* <h2 className="text-4xl font-bold md:text-6xl">Hi, I'm Aarish Mahmood 👋</h2> */}
           <h2 className="text-4xl font-bold md:text-6xl">Hi, I'm Aarish Mahmood</h2>
           <p className="mt-6 max-w-2xl">
-            Software Engineer focused on Backend, System Design, and modern Frontend with React & TypeScript.
+            Software Engineer focused on Backend, System Design, and Frontend.
           </p>
-          <div className="mt-8 flex gap-6">
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
             <Button className="text-xl p-6" asChild>
               <a href="#projects">View My Work</a>
             </Button>
             <Button variant="outline" className="text-xl p-6" asChild>
               <a href="#contact">Contact Me</a>
+            </Button>
+            <Button variant="outline" className="text-xl p-6" asChild>
+              <a href={resumeUrl} download="Aarish_Mahmood_Resume.pdf">
+                View My Resume
+              </a>
             </Button>
           </div>
         </div>
